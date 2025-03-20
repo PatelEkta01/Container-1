@@ -3,14 +3,10 @@ options:
   default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET
 
 substitutions:
-<<<<<<< HEAD
-  _SHORT_SHA: "latest"  # ✅ Ensure correct formatting
-=======
-  _SHORT_SHA: "latest"
->>>>>>> 512a184 (Added correct CI/CD pipeline for Container-2)
+  _SHORT_SHA: "latest"  
 
 steps:
-  # Step 1: Build the Docker image for Container 2
+  # Step 1: Build the Docker image for Container-2 Test
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
@@ -20,11 +16,7 @@ steps:
       - 'us-central1-docker.pkg.dev/kubernetes-assignment-454116/kubernetes-assignment-repo/container2:${_SHORT_SHA}'
       - '-f'
       - 'container-2/Dockerfile'
-<<<<<<< HEAD
       - '.'
-=======
-      - 'container-2/'  # ✅ Fix: Use the correct build context
->>>>>>> 512a184 (Added correct CI/CD pipeline for Container-2)
 
   # Step 2: Push the Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
@@ -38,8 +30,4 @@ steps:
       - 'us-central1-docker.pkg.dev/kubernetes-assignment-454116/kubernetes-assignment-repo/container2:${_SHORT_SHA}'
 
 images:
-<<<<<<< HEAD
   - 'us-central1-docker.pkg.dev/kubernetes-assignment-454116/kubernetes-assignment-repo/container2:${_SHORT_SHA}'
-=======
-  - 'us-central1-docker.pkg.dev/kubernetes-assignment-454116/kubernetes-assignment-repo/container2:${_SHORT_SHA}'
->>>>>>> 512a184 (Added correct CI/CD pipeline for Container-2)
