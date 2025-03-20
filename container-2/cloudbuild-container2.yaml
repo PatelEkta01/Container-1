@@ -16,7 +16,7 @@ steps:
       - 'us-central1-docker.pkg.dev/kubernetes-assignment-454116/kubernetes-assignment-repo/container2:${_SHORT_SHA}'
       - '-f'
       - 'container-2/Dockerfile'
-      - '.'
+      - 'container-2/'
 
   # Step 2: Push the Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
