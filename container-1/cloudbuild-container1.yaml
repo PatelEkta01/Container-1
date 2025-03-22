@@ -1,0 +1,55 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+  default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET
+
+substitutions:
+  _SHORT_SHA: "latest"  
+
+steps:
+  # Step 1: Build and push Container 1 image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/kubernetes-assignment-454116/kubernetes-assignment-repo/container1:latest'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/kubernetes-assignment-454116/kubernetes-assignment-repo/container1:${_SHORT_SHA}'
+      - '-f'
+      - 'container-1/Dockerfile'
+      - 'container-1/'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'us-central1-docker.pkg.dev/kubernetes-assignment-454116/kubernetes-assignment-repo/container1:latest'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'us-central1-docker.pkg.dev/kubernetes-assignment-454116/kubernetes-assignment-repo/container1:${_SHORT_SHA}'
+
+
+# Step 2: Authenticate with the GKE cluster
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'container'
+      - 'clusters'
+      - 'get-credentials'
+      - 'ekta-gke-cluster'  
+      - '--region'
+      - 'us-central1-a'
+      - '--project'
+      - 'kubernetes-assignment-454116'
+
+ # Step 3: Authenticate with GKE and deploy using kubectl
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud container clusters get-credentials ekta-gke-cluster --zone us-central1-a --project kubernetes-assignment-454116
+        kubectl apply -f container-2/container2-deployment.yaml  # Ensure the path is correct
+        kubectl apply -f container-2/container2-service.yaml    # Ensure the path is correct
+
+images:
+  - 'us-central1-docker.pkg.dev/kubernetes-assignment-454116/kubernetes-assignment-repo/container1:${_SHORT_SHA}'
