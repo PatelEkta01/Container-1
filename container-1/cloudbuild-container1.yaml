@@ -41,15 +41,15 @@ steps:
       - '--project'
       - 'kubernetes-assignment-454116'
 
- # Step 3: Authenticate with GKE and deploy using kubectl
+# Step 3: Authenticate with GKE and deploy using kubectl
   - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: 'bash'
     args:
       - '-c'
       - |
         gcloud container clusters get-credentials ekta-gke-cluster --zone us-central1-a --project kubernetes-assignment-454116
-        kubectl apply -f container-2/container2-deployment.yaml  # Ensure the path is correct
-        kubectl apply -f container-2/container2-service.yaml    # Ensure the path is correct
+        kubectl apply -f container-1/container1-deployment.yaml  # Make sure the path is correct
+        kubectl apply -f container-1/container1-service.yaml    # Make sure the path is correct
 
 images:
   - 'us-central1-docker.pkg.dev/kubernetes-assignment-454116/kubernetes-assignment-repo/container1:${_SHORT_SHA}'
