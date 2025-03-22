@@ -3,10 +3,10 @@ options:
   default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET
 
 substitutions:
-  _SHORT_SHA: "latest"  
+  _SHORT_SHA: "latest"
 
 steps:
-  # Step 1: Build the Docker image for Container-2 Test
+  # Step 1: Build the Docker image for Container 2
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
@@ -16,7 +16,7 @@ steps:
       - 'us-central1-docker.pkg.dev/kubernetes-assignment-454116/kubernetes-assignment-repo/container2:${_SHORT_SHA}'
       - '-f'
       - 'container-2/Dockerfile'
-      - 'container-2/'
+      - 'container-2/'  # ✅ Fix: Use the correct build context
 
   # Step 2: Push the Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
@@ -28,17 +28,6 @@ steps:
     args:
       - 'push'
       - 'us-central1-docker.pkg.dev/kubernetes-assignment-454116/kubernetes-assignment-repo/container2:${_SHORT_SHA}'
-
-
-# Step 3: Authenticate with GKE and deploy using kubectl
-  - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        gcloud container clusters get-credentials ekta-gke-cluster --zone us-central1-a --project kubernetes-assignment-454116
-        kubectl apply -f container-2/container2-deployment.yaml  # Make sure the path is correct
-        kubectl apply -f container-2/container2-service.yaml    # Make sure the path is correct
 
 images:
   - 'us-central1-docker.pkg.dev/kubernetes-assignment-454116/kubernetes-assignment-repo/container2:${_SHORT_SHA}'
