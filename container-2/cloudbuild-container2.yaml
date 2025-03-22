@@ -31,3 +31,22 @@ steps:
 
 images:
   - 'us-central1-docker.pkg.dev/kubernetes-assignment-454116/kubernetes-assignment-repo/container2:${_SHORT_SHA}'
+
+# Step 3: Authenticate with the GKE cluster
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'container'
+      - 'clusters'
+      - 'get-credentials'
+      - 'ekta-gke-cluster'  # New cluster name
+      - '--region'
+      - 'us-central1-a'
+      - '--project'
+      - 'kubernetes-assignment-454116'
+
+# Step 4: Deploy Container 2 to the GKE cluster
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args:
+      - 'apply'
+      - '-f'
+      - 'container-2/container2-deployment.yaml'
