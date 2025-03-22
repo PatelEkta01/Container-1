@@ -29,26 +29,16 @@ steps:
       - 'push'
       - 'us-central1-docker.pkg.dev/kubernetes-assignment-454116/kubernetes-assignment-repo/container2:${_SHORT_SHA}'
 
-images:
-  - 'us-central1-docker.pkg.dev/kubernetes-assignment-454116/kubernetes-assignment-repo/container2:${_SHORT_SHA}'
 
 # Step 3: Authenticate with GKE and deploy using kubectl
   - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
     args:
-      - 'container'
-      - 'clusters'
-      - 'get-credentials'
-      - 'ekta-gke-cluster'  # Replace with your GKE cluster name
-      - '--zone'
-      - 'us-central1-a'     # Replace with your GKE cluster zone
-      - '--project'
-      - 'kubernetes-assignment-454116'
+      - '-c'
+      - |
+        gcloud container clusters get-credentials ekta-gke-cluster --zone us-central1-a --project kubernetes-assignment-454116
+        kubectl apply -f container-2/container2-deployment.yaml  # Make sure the path is correct
+        kubectl apply -f container-2/container2-service.yaml    # Make sure the path is correct
 
-  # Step 4: Apply Kubernetes deployment and service
-  - name: 'gcr.io/cloud-builders/kubectl'
-    args:
-      - 'apply'
-      - '-f'
-      - 'container-2/container2-deployment.yaml'  # Replace with your actual file path
-      - '-f'
-      - 'container-2/container2-service.yaml'    # Replace with your actual file path
+images:
+  - 'us-central1-docker.pkg.dev/kubernetes-assignment-454116/kubernetes-assignment-repo/container2:${_SHORT_SHA}'
