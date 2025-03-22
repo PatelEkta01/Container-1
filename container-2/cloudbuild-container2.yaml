@@ -44,7 +44,7 @@ images:
       - '--project'
       - 'kubernetes-assignment-454116'
 
-# Step 4: Deploy Container 2 to the GKE cluster
+# Step 4: Deploy Container 2 to the GKE cluster.
   - name: 'gcr.io/cloud-builders/kubectl'
     args:
       - 'apply'
