@@ -1,6 +1,4 @@
-container-1/
 terraform-gke/
 .terraform/
 terraform.tfstate
-file.dat
 .DS_Store
