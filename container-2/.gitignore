@@ -1,5 +1,4 @@
 container-1/
-container-2/
 terraform-gke/
 .terraform/
 terraform.tfstate
