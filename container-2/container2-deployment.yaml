@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: container2-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: container2
+  template:
+    metadata:
+      labels:
+        app: container2
+    spec:
+      containers:
+        - name: container2
+          image: us-central1-docker.pkg.dev/kubernetes-assignment-454116/kubernetes-assignment-repo/container2:latest
+          ports:
+            - containerPort: 5001  # Updated port to match Dockerfile
+          volumeMounts:
+            - mountPath: "/ekta_PV_dir"
+              name: my-storage
+      volumes:
+        - name: my-storage
+          persistentVolumeClaim:
+            claimName: ekta-pvc  # Make sure PVC exists before deploying
