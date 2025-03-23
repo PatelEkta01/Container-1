@@ -1,5 +1,3 @@
-container-2/
-terraform-gke/
 .terraform/
 terraform.tfstate
 file.dat

@@ -39,6 +39,7 @@ steps:
         kubectl apply -f terraform-gke/pvc.yaml
         kubectl apply -f container-2/container2-deployment.yaml
         kubectl apply -f container-2/container2-service.yaml
+        
 
 
 images:
