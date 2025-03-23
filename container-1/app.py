@@ -21,7 +21,7 @@ def store_file():
     file_name = data['file']
     file_data = data['data']
 
-    app.logger.info("B01013736")
+    app.logger.info("B01013736_ekta")
 
     if not file_data or not file_data.strip():
         return jsonify({"file": file_name, "error": "File content cannot be empty."}), 400
