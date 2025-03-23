@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import os
 import requests
-
+ 
 app = Flask(__name__)
 PV_DIR = "/ekta_PV_dir"  # Persistent volume directory
 CONTAINER2_URL = "http://container2-service:5001" # External IP for Container 2
