@@ -3,7 +3,7 @@ options:
   default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET
 
 substitutions:
-  _SHORT_SHA: "latest"
+  _SHORT_SHA: "latest" 
 
 steps:
   # Step 1: Build the Docker image for Container 2 //ekta 
