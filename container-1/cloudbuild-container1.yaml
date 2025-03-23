@@ -48,6 +48,7 @@ steps:
       - '-c'
       - |
         gcloud container clusters get-credentials ekta-gke-cluster --zone us-central1-a --project kubernetes-assignment-454116
+        kubectl apply -f terraform-gke/pvc.yaml
         kubectl apply -f container-1/container1-deployment.yaml  
         kubectl apply -f container-1/container1-service.yaml    
 
