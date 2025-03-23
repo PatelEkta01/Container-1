@@ -21,7 +21,7 @@ def store_file():
     file_name = data['file']
     file_data = data['data']
 
-    app.logger.info("B01013736_ekta")
+    app.logger.info("B01013736")
 
     if not file_data or not file_data.strip():
         return jsonify({"file": file_name, "error": "File content cannot be empty."}), 400
@@ -48,7 +48,7 @@ def calculate():
 
     try:
         # Forward the request to Container 2
-        response = requests.post(f"{CONTAINER2_URL}/calculate", json=data, timeout=5)
+        response = requests.post(f"{CONTAINER2_URL}/calculate-total", json=data, timeout=5)
         
         # Return the response from Container 2
         return jsonify(response.json()), response.status_code
