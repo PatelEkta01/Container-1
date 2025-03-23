@@ -7,6 +7,6 @@ spec:
     app: container2
   ports:
     - protocol: TCP
-      port: 5001  # Updated port to match Dockerfile
+      port: 5001  # Updated port to match dockerfile 
       targetPort: 5001
   type: ClusterIP

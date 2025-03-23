@@ -3,7 +3,7 @@ import os
 
 app = Flask(__name__)
 
-# Persistent volume directory
+# Persistent volume directory //ekta
 PV_DIR = "/ekta_PV_dir"
 
 @app.route('/calculate-total', methods=['POST'])
