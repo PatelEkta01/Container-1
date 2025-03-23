@@ -6,7 +6,7 @@ substitutions:
   _SHORT_SHA: "latest"
 
 steps:
-  # Step 1: Build the Docker image for Container 2
+  # Step 1: Build the Docker image for Container 2   //B01013736
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
