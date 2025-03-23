@@ -36,7 +36,7 @@ steps:
       - 'clusters'
       - 'get-credentials'
       - 'ekta-gke-cluster'  
-      - '--region'
+      - '--zone'
       - 'us-central1-a'
       - '--project'
       - 'kubernetes-assignment-454116'
@@ -50,7 +50,8 @@ steps:
         gcloud container clusters get-credentials ekta-gke-cluster --zone us-central1-a --project kubernetes-assignment-454116
         kubectl apply -f terraform-gke/pvc.yaml
         kubectl apply -f container-1/container1-deployment.yaml  
-        kubectl apply -f container-1/container1-service.yaml    
+        kubectl apply -f container-1/container1-service.yaml 
+           
 
 images:
   - 'us-central1-docker.pkg.dev/kubernetes-assignment-454116/kubernetes-assignment-repo/container1:${_SHORT_SHA}'
