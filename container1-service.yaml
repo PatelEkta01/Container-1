@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: container1-service
+spec:
+  selector:
+    app: container1
+  ports:
+    - protocol: TCP
+      port: 80   # External port
+      targetPort: 80  # Pod's port
+      nodePort: 30080
+  type: LoadBalancer  # Use LoadBalancer to get an external IP (for GKE)
+
