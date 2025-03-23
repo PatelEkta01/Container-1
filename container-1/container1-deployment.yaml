@@ -20,8 +20,8 @@ spec:
             - containerPort: 6000  # Change this to match the Dockerfile
           volumeMounts:
             - mountPath: "/ekta_PV_dir"
-              name: my-storage
+              name: standard-volume
       volumes:
-        - name: my-storage
+        - name: standard-volume
           persistentVolumeClaim:
             claimName: ekta-pvc
