@@ -6,7 +6,7 @@ substitutions:
   _SHORT_SHA: "latest"  
 
 steps:
-  # Step 1: Build and push Container 1 image
+  # Step 1: Build and push Container 1 image //B01013736
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
@@ -41,7 +41,7 @@ steps:
       - '--project'
       - 'kubernetes-assignment-454116'
 
-# Step 3: Authenticate with GKE and deploy using kubectl
+# Step 3: Authenticate with GKE and deploy using kubectl.
   - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: 'bash'
     args:
