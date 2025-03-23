@@ -13,7 +13,7 @@ def calculate_total():
         if not data or 'file' not in data or 'product' not in data:
             return jsonify({"file": None, "sum": 0, "error": "Invalid JSON input."}), 400
 
-        app.logger.info("B01013736_ekta")
+        app.logger.info("B01013736")
         file_name = data['file']
         product = data['product']
     except Exception:
