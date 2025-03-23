@@ -1,0 +1,6 @@
+container-2/
+terraform-gke/
+.terraform/
+terraform.tfstate
+file.dat
+.DS_Store
